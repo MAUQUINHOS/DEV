@@ -64,29 +64,29 @@ CODIGO _ERRO(){
 
 if [ "$code_erro" -ge "400" ];
 then
-echo "HTTP_CODE: $code_erro" 
-err $code_erro
+    echo "HTTP_CODE: $code_erro" 
+    err $code_erro
 else
-echo "HTTP_CODE: $code_erro" 
-err $code_erro
-wget -q --show-progress --spider --recursive --no-verbose -O temp.html $url_limpa > /dev/null
-grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' temp.html | sort | uniq > temp1
-grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' temp.html >> temp1
-grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\:[0-9]\{1,5\}' temp.html >> temp1
-cat temp1 | sort | uniq > parse.tmp
-links=$(cat parse.tmp | sort | uniq | wc -l)
-echo "Urls obtidas: $links"
-cat parse.tmp | uniq -c
-echo -e "#####################\n"
-file=$(echo $url_limpa | cut -d "." -f1)
-for host in $(cat parse.tmp | cut -d ':' -f2 | sed 's/www.//' | sed 's/\/\///' | cut -d '/' -f1 | sort -u ); do
-host $host  | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >>  "$file"
-done
-links=$(cat $file | wc -l)
-echo "Resolvendo URL's encontradas:"$links 
-for host in $(cat "$file" | sort -u | cut -d " " -f 2,1  --output-delimiter='\t:'); do
-echo -e "$host" | tr '\n' ' '
-echo ""
-done
-rm temp.html temp1 parse.tmp
+    echo "HTTP_CODE: $code_erro" 
+    err $code_erro
+    wget -q --show-progress --spider --recursive --no-verbose -O temp.html $url_limpa > /dev/null
+    grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' temp.html | sort | uniq > temp1
+    grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' temp.html >> temp1
+    grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\:[0-9]\{1,5\}' temp.html >> temp1
+    cat temp1 | sort | uniq > parse.tmp
+    links=$(cat parse.tmp | sort | uniq | wc -l)
+    echo "Urls obtidas: $links"
+    cat parse.tmp | uniq -c
+    echo -e "#####################\n"
+    file=$(echo $url_limpa | cut -d "." -f1)
+    for host in $(cat parse.tmp | cut -d ':' -f2 | sed 's/www.//' | sed 's/\/\///' | cut -d '/' -f1 | sort -u ); do
+        host $host  | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >>  "$file"
+    done
+    links=$(cat $file | wc -l)
+    echo "Resolvendo URL's encontradas:"$links 
+    for host in $(cat "$file" | sort -u | cut -d " " -f 2,1  --output-delimiter='\t:'); do
+        echo -e "$host" | tr '\n' ' '
+        echo ""
+    done
+    rm temp.html temp1 parse.tmp
 fi
