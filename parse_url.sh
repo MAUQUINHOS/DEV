@@ -11,16 +11,24 @@
 # obtidas de dentro do link
 #
 #
-# Exemplos:
+# Exemplo:
 #
 #   $ ./parse_url.sh meusite.com.br
-#
-#   
-#
-#
-#
-#
+#       
+#       Site: google.com
+#       HTTP_CODE: 301
+#       Urls obtidas: 15
+#       1 http://maps.google.com.br/maps?hl=pt-BR
+#       1 http://news.google.com.br/nwshp?hl=pt-BR
+#       1 https://accounts.google.com/ServiceLogin?hl=pt-BR
+#       ...
+#       #####################
+#       Resolvendo URL's encontradas:116
+#        accounts.google.com	:172.217.28.237 
+#        accounts.google.com	:mail 
+#       ...
 # -----------------------------------------------------
+
 if [ "$1" == "" ];
 then
 clear
