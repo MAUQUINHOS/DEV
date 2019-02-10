@@ -6,9 +6,9 @@
 # Autor : @MAUQUINHOS
 #
 # -----------------------------------------------------
-# Este programa recebe como um parametro um site e baixa sua index, e após
-# algumas etapas e passagens por filtros, retorna as URL's 
-# obtidas de dentro do link
+# Este funciona da seguinte maneira, recebe um SITE como parametro baixa sua index, 
+# após algumas etapas e passagens por filtros, retorna as URL's 
+# obtidas de dentro da sua página principal.
 #
 ## Exemplo de como utilizar:
 #
