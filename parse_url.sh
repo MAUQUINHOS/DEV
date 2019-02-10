@@ -10,22 +10,29 @@
 # algumas etapas e passagens por filtros, retorna as URL's 
 # obtidas de dentro do link
 #
-# Exemplo de como utilizar:
+## Exemplo de como utilizar:
 #
 #   $ ./parse_url.sh google.com.br
 #       
-#       Site: google.com
-#       HTTP_CODE: 301
-#       URL's obtidas: 15
-#       1 http://maps.google.com.br/maps?hl=pt-BR
-#       1 http://news.google.com.br/nwshp?hl=pt-BR
-#       1 https://accounts.google.com/ServiceLogin?hl=pt-BR
-#       ...
-#       #####################
-#       Resolvendo URL's encontradas:116
-#        accounts.google.com	:172.217.28.237 
-#        accounts.google.com	:mail 
-#       ...
+## Saída do script
+#
+#   PARSING NO SITE: google.com
+#         HTTP_CODE: 301 Moved Permanently
+#            STATUS: INICIANDO DOWNLOAD
+#                    LINKS COM HTTP[s]
+#                    LINKS COM IP[s]
+#                    LINKS COM IP[s]:PORTAS
+#                    15 URL[s] NO TOTAL
+#                    15 URL[s] FILTRADAS
+#    OBTENDO URL[s] E EXTRAINDO IP[s]: 
+#    ===============================================
+#    accounts.google.com 172.217.28.237
+#    accounts.google.com 2800:3f0:4001:801::200d
+#    drive.google.com 172.217.162.110
+#    drive.google.com 2800:3f0:4001:80f::200e
+#    ...
+#    ===============================================
+#
 #
 # -----------------------------------------------------
 #
@@ -100,11 +107,14 @@ else
 
     rm temporario
 
-    for URL in $(cat parse.tmp); do
+#
+#
+#
+    for URL in $(cat parse.tmp); do 
 
         REMOVE_HTTP $URL
-
-        host $url_limpa | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >> temporario
+        
+        [ "$URL" ] && host $url_limpa | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >> temporario; fi
     
     done
 
