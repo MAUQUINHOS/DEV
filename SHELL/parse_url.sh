@@ -99,7 +99,7 @@ else
 
     echo "                 $(cat temporario | sort -u | wc -l) URL[s] FILTRADAS"
 
-    echo "OBTENDO URL[s] E EXTRAINDO IP[s]: "
+    echo "OBTENDO URL[s], EXTRAINDO IP[s], REMOVENDO DUPLICIDADES E NULOS: "
 
     cat temporario | sort -u > parse.tmp # Cria um arquivo temporário PARSE
 
