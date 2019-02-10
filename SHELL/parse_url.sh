@@ -40,16 +40,14 @@
 # os parametros existem para continuar o programa
 # Caso não exista informa o modo  correto de uso.
 #   Exemplo: https://google.com ~> google.com 
-if [ "$1" == "" ];
-then 
-
+[ -z "$1" ] && {
     clear
     
     echo -e "\n Exemplo de como utilizar:\n\t./parse_url.sh meusite.com.br\n"
     
     exit 1
     
-fi
+}
 #
 # Formata a URL com letras minúsculas para evitar erros, 
 # remove http's e www's caso existam e salva na variável  $url_limpa.
@@ -69,7 +67,7 @@ NOME_DO_ARQUIVO_GERADO=$(echo $url_limpa | cut -d'.' -f1) # Guarda o domínio pa
 echo "PARSING NO SITE: $url_limpa"
 #
 #
-# Obtém o cabeçalho do SITE e armazena o código HTTP_CODE na variavel $code_erro
+# Obtém o cabeçalho do SITE e armazena o código HTTP_CODE na variável $code_erro
 #
 code_erro=$(curl --silent --head --write-out '%{http_code}' $url_limpa | head -n1 | cut -d' ' -f2-6)
 
