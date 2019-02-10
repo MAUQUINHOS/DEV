@@ -12,7 +12,7 @@
 #
 # Exemplo de como utilizar:
 #
-#   $ ./parse_url.sh meusite.com.br
+#   $ ./parse_url.sh google.com.br
 #       
 #       Site: google.com
 #       HTTP_CODE: 301
