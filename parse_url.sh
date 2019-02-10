@@ -103,21 +103,22 @@ else
 
     echo "OBTENDO URL[s] E EXTRAINDO IP[s]: "
 
-    cat temporario | sort -u > parse.tmp
+    cat temporario | sort -u > parse.tmp # Cria um arquivo temporário PARSE
 
-    rm temporario
+    rm temporario 
 
 #
-#
+# Leitura linha a linha no arquivo (parse.tmp), no qual é extraído todas URL[s] obitidas do site.
 #
     for URL in $(cat parse.tmp); do 
 
         REMOVE_HTTP $URL
         
-        [ "$URL" ] && host $url_limpa | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >> temporario; fi
+        [ "$URL" ] && host $url_limpa | grep -w "has\|NXDOMAIN\|mail" | sed 's/Host //' | sed 's/has address //' | sed 's/has IPv6 address //' >> temporario # Consulta função HOST para obter IP[s]
     
     done
-
+#
+# Imprime a saída na tela com as URL[s] que foram extraídas e filtradas
     echo "==============================================="
     
     cat temporario  | cut -d" " -f1-2 | sort -u | grep -v "mail"
