@@ -216,18 +216,18 @@ function pause(){
 
 function add_proxy() {
  update
-#pause "Sistema atualizado: Press [enter] key para continuar..."
+pause "Sistema atualizado: Press [enter] key para continuar..."
  install_pacotes
-#pause "Pacotes instalados: Press [enter] key para continuar..."
+pause "Pacotes instalados: Press [enter] key para continuar..."
  stop_servicos
-#pause "Stop serviços: Press [enter] key para continuar..."
+pause "Stop serviços: Press [enter] key para continuar..."
  config_tor
  config_proxy
-#pause "Iniciando serviços: Press [enter] key para continuar..."
+pause "Iniciando serviços: Press [enter] key para continuar..."
  start_servicos
  clear
  echo ""
-#pause "Configure seu navegador para navegar com proxy, 127.0.0.1 port 8118"
+pause "Configure seu navegador para navegar com proxy, 127.0.0.1 port 8118"
  sudo rm /etc/apt/sources.list
  sudo cp /etc/apt/sources.list-bkp /etc/apt/sources.list
  adv_proxy
