@@ -16,10 +16,13 @@
 #       
 ## Saída do script
 #
-#   O que deseja?"
+#   O que deseja?
 #     1: Instalar Proxy TOR"
 #     2: Remover Proxy TOR"
 #     e: Sair"
+#
+## Ao finalizar a instalação
+#       Configure seu navegador para navegar com proxy, 127.0.0.1 port 8118
 #
 ###########################################MENU
 function select_menu(){
