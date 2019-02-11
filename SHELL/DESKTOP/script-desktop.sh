@@ -5,6 +5,7 @@
 #
 # Atualize a source.list caso apresente erros
 ## https://help.ubuntu.com/community/Repositories/CommandLine
+## http://archive.ubuntu.com/ubuntu/dists/
 # Através deste link, é possível atualizar do Ubuntu Server
 # Porque é o Sistema Operacional que estamos utilizando
 #
