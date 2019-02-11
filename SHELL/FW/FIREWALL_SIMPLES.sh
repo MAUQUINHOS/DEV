@@ -8,7 +8,7 @@ trap 'dialog --msgbox "Voce não pode fazer isto" 8 40; menu' SIGTSTP
 #Inicio do sistema 
 
 #Bibliotecas Basicas
-HR=/root/Osmany
+HR="$(pwd)"
 . $HR/includes/biblioteca_ativacao_servicos.sh
 . $HR/includes/biblioteca_firewall.sh
 . $HR/includes/biblioteca_discos.sh
