@@ -26,7 +26,7 @@ function update(){
     
     VER_SISTEMA="$(cat /etc/issue | cut -d' ' -f2 | awk -F'.' '{print $1$2}')"
     
-    [ $((($VER_ATUAL-$VER_SISTEMA)/12)) -gt "7" ] && \
+    [ $((($VER_ATUAL-$VER_SISTEMA)/12)) -gt "12" ] && \
     
     pause "É necessário atualizar o sistema" && \
     
