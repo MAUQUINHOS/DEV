@@ -4,7 +4,7 @@ menu(){
 menu=$(dialog --backtitle "MENU" --stdout --nocancel --inputbox "\\n
    __________________________________________________________  \\n
   |                           |                              | \\n
-  | GERENCIAMENTO DE FIREWALL |  FATEC SÃO CAETANO DO SUL    | \\n
+  | GERENCIAMENTO DE FIREWALL |  @MAUQUINHOS                 | \\n
   |___________________________|         SEGNA 3 Profº Osmany | \\n
   | Opções____________________|______________________________| \\n
   |                           | \\n
