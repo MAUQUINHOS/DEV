@@ -21,14 +21,23 @@
 ###############################################
 #1 atualiza o sistema/
 function update(){
-    sudo apt-get  update && apt-get upgrade -y
+    
+    VER_ATUAL="$(date '+%y%m')"
+    
+    VER_SISTEMA="$(cat /etc/issue | cut -d' ' -f2 | awk -F'.' '{print $1$2}')"
+    
+    [ $((($VER_ATUAL-$VER_SISTEMA)/12)) -gt "7" ] && \
+    
+    pause "É necessário atualizar o sistema" && \
+    
+    head -n10 $(basename "$0") | tr '#' ' ' && exit 0
+    
+    
+    
     if [ $? -eq 1 ] ; then
     
-        head -n10 $(basename "$0") | tr '#' ' '
-
-    
-        pause "Será preciso atualizar a  SOURCE.LIST sistema esta ultrapassado."
-
+        sudo apt-get  update && apt-get upgrade -y
+        
         exit 1
         
     else
