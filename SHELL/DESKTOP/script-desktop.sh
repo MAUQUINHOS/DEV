@@ -3,6 +3,12 @@
 # Site  : linkedin.com/in/mauquinhos
 # Autor : @MAUQUINHOS
 #
+# Atualize a source.list caso apresente erros
+## https://help.ubuntu.com/community/Repositories/CommandLine
+# Através deste link, é possível atualizar do Ubuntu Server
+# Porque é o Sistema Operacional que estamos utilizando
+#
+#
 #Save file to: script-desktop.sh
 #1- wget -O script-desktop.sh linkdoarquinho.sh
 #2- chmod +x script-desktop.sh
@@ -13,13 +19,23 @@
 #3. Window Manager - Openbox Window Manager (PIXEL/LXDE) or XFWM Window Manager (XFCE) or Marco Window Manager (MATE)
 #4. Login Manager - LightDM Login Manager
 ###############################################
-#############################  @mauquinhos   ##
-# mais informações ~> https://www.raspberrypi.org/forums/viewtopic.php?f=66&t=133691 25/02/2017
-###############################################
 #1 atualiza o sistema/
 function update(){
     sudo apt-get  update && apt-get upgrade -y
-    pause "1º UPDATE e UPGRADE - instalado:  Press [Enter] key para continuar..."
+    if [ $? -eq 1 ] ; then
+    
+        head -n10 $(basename "$0") | tr '#' ' '
+
+    
+        pause "Será preciso atualizar a  SOURCE.LIST sistema esta ultrapassado."
+
+        exit 1
+        
+    else
+    
+        pause "1º UPDATE e UPGRADE - instalado:  Press [Enter] key para continuar..."
+    
+    fi
 }
 #2 instala os serviços necessários
 function servicos(){
