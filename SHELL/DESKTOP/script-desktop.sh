@@ -29,12 +29,22 @@ function update(){
     
     [ $((($VER_ATUAL-$VER_SISTEMA)/12)) -gt "12" ] && \
     
-    pause "É necessário atualizar o sistema" && \
+    ANO=$(date '+%Y') && \
     
-    head -n10 $(basename "$0") | tr '#' ' ' && exit 0
+    wget -O index http://archive.ubuntu.com/ubuntu/dists/  && \
+
+    RECENTE=$(cat index | sed 's/<[^>]*>//g' | grep -vwEi "(backports|precise|security|updates|proposed|index|ubuntu|devel)" | cut -d"-" -f1,2 | grep "$ANO") && \
     
+    pause "Será preciso atualizar o sistema para versões recentes: \n\t\t$RECENTE\n" && \
     
+    RECENTE=$(echo $RECENTE | cut -d"/" -f1) && \
     
+    SIS_ATUAL="$(lsb_release -sc)" && \
+    
+    CMD=' | sed "s/'$SIS_ATUAL'/'$RECENTE'/" > /etc/apt/source.list ' && \
+
+    pause 'Utilize o comando: \n\n cp /etc/apt/source.list /etc/apt/source.list-old && cat /etc/apt/source.list-old'$CMD  && exit 0
+       
     if [ $? -eq 1 ] ; then
     
         sudo apt-get  update && apt-get upgrade -y
