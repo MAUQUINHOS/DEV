@@ -1,19 +1,18 @@
 #!/bin/bash
 ###############################################
-#Save file to: script-desktop.sh
-#1- wget -O script-desktop.sh linkdoarquinho.sh
-#2- chmod +x script-desktop.sh
+# Este script foi instalado e homologado em um RasbpBerry PI
+# Save file to: script-desktop.sh
+#1- wget -O instalador_lamp.sh linkdoarquinho.sh
+#2- chmod +x instalador_lamp.sh
 #3- sudo -s
-#4- ./script-desktop.sh
-#1. Display Server -Xorg Display Server
-#2. Desktop Environment - Pi Improved Xwindows Environment Lightweight (PIXEL) or Lightweight X11 Desktop Environment (LXDE) or XFCE Desktop Environment (XFCE) or MATE Desktop Environment (MATE)
-#3. Window Manager - Openbox Window Manager (PIXEL/LXDE) or XFWM Window Manager (XFCE) or Marco Window Manager (MATE)
-#4. Login Manager - LightDM Login Manager
+#4- ./instalador_lamp.sh
+#1. Checa se o sistema estaatualizado
+#2. Verifica se os serviços estão instalados
+#3. Instala os serviços
 ###############################################
 #############################  @mauquinhos   ##
-# mais informações ~> https://www.raspberrypi.org/forums/viewtopic.php?f=66&t=133691 25/02/2017
-###############################################
-#1 atualiza o sistema/
+
+#1 atualiza o sistema
 function update(){
     sudo apt-get  update && apt-get upgrade -y
     pause "1º UPDATE e UPGRADE - instalado:  Press [Enter] key para continuar..."
