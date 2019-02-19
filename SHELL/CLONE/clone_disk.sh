@@ -24,23 +24,31 @@ LISTAR_DISCOS(){
   TESTE='whiptail --title "Discos" --radiolist "Qual disco você que copiar?" 15 60 4 '$DISCOS' 3>&1 1>&2 2>&3;'
 
   # O eval executa a função contida na variavel $TESTE e armazena seu resultado em $DISCOS
-  DISCOS=$(eval "$TESTE") 
+  DISCOS=$(eval "$TESTE")  
+  
+  echo $DISCOS 
 }
 
-
-echo "Please enter your name: \c"
-read OPT
-[ -n "$newname" ] && OPT=$newname
-
-
-case OPT in
-  1) LISTAR_DISCOS; echo $DISCOS ;; #Se foi informado a opção 1 então realiza o echo, no caso o parâmetro é numero
-
-  2) echo "2" ;; # Podendo ser texto
-  *) echo "Opcao Invalida!" ;; # Algo que não se enquadre acima
-
-esac
-
+PS3='Escplha uma opção: '
+options=("Listar discos" "Clonar discos" "Option 3" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Listar discos")
+            LISTAR_DISCOS
+            ;;
+        "Clonar discos")
+            echo "you chose choice 2"
+            ;;
+        "Option 3")
+            echo "you chose choice $REPLY which is $opt"
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
 
 #comandos para clonar
 #dd if=/dev/sda bs=4M | gzip -c | split -b 2G - /mnt/backup_sda.img.gz
