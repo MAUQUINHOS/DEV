@@ -16,7 +16,7 @@ read programas <<< "$(which dd 2> /dev/null)"
 [[ "$programas" ]] || {   echo 'neither whiptail nor dialog found' >&2;   exit 1; }
 #
 #
-LISTAR_DISCOS(){
+SELECIONAR_DISCOS(){
   # Lista todos os discos disponiveis na computador
   DISCOS=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print "\""$1"\" " "\"Type: "$6"\" OFF "}' | tr '\n' ' ')
 
@@ -28,19 +28,30 @@ LISTAR_DISCOS(){
  
 }
 
+LISTAR_DISCOS(){
+  # Lista todos os discos disponiveis na computador
+  dsk=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print $1 " TIPO:" $6 " TAMANHO:" $4}' | sort -u)
+   
+  #Exibe os discos disponíveis
+  whiptail --title "Discos disponíveis" --msgbox "DISCOS:\n$dsk" 15 78
+ 
+}
+
 PS3='Escolha uma opção: '
-options=("Selecionar Disco" "Clonar discos" "Option 3" "Quit")
+options=("Selecionar Disco" "Listar discos" "Option 3" "Quit")
 select opt in "${options[@]}"
-do
+do  
     case $opt in
         "Selecionar Disco")
-            LISTAR_DISCOS
+            SELECIONAR_DISCOS
             echo $DISCOS
             ;;
-        "Clonar discos")
-            echo "you chose choice 2"
+        "Listar discos")
+            
+            LISTAR_DISCOS
             ;;
         "Option 3")
+            clear
             echo "you chose choice $REPLY which is $opt"
             ;;
         "Quit")
@@ -48,7 +59,7 @@ do
             ;;
         *) 
         clear
-        echo "invalid option $REPLY";;
+        echo "Opção invalida: $REPLY";;
     esac
 done
 
