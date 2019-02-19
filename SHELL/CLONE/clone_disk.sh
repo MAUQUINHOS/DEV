@@ -25,17 +25,17 @@ LISTAR_DISCOS(){
 
   # O eval executa a função contida na variavel $TESTE e armazena seu resultado em $DISCOS
   DISCOS=$(eval "$TESTE")  
-  
-  echo $DISCOS 
+ 
 }
 
-PS3='Escplha uma opção: '
-options=("Listar discos" "Clonar discos" "Option 3" "Quit")
+PS3='Escolha uma opção: '
+options=("Selecionar Disco" "Clonar discos" "Option 3" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Listar discos")
+        "Selecionar Disco")
             LISTAR_DISCOS
+            echo $DISCOS
             ;;
         "Clonar discos")
             echo "you chose choice 2"
@@ -46,7 +46,9 @@ do
         "Quit")
             break
             ;;
-        *) echo "invalid option $REPLY";;
+        *) 
+        clear
+        echo "invalid option $REPLY";;
     esac
 done
 
