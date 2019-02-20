@@ -21,7 +21,7 @@ SELECIONAR_DISCOS(){
   DISCOS=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print "\""$1"\" " "\"Type: "$6"\" OFF "}' | tr '\n' ' ')
 
   # Cria a msgbox listando os disco encontrados armazenados em $DISCOS
-  TESTE='whiptail --title "Discos" --radiolist "Qual disco você que copiar?" 15 60 4 '$DISCOS' 3>&1 1>&2 2>&3;'
+  TESTE='whiptail --title "SELECIONAR DISCO" --radiolist "Escolha um disco que será copiado:" 15 60 4 '$DISCOS' 3>&1 1>&2 2>&3;'
 
   # O eval executa a função contida na variavel $TESTE e armazena seu resultado em $DISCOS
   DISCOS=$(eval "$TESTE")  
@@ -33,34 +33,58 @@ LISTAR_DISCOS(){
   dsk=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print $1 " TIPO:" $6 " TAMANHO:" $4}' | sort -u)
    
   #Exibe os discos disponíveis
-  whiptail --title "Discos disponíveis" --msgbox "DISCOS:\n$dsk" 15 78
+  
+  titulo="Listando discos"
+  result="DISCOS:\n$dsk"
  
 }
 
-PS3='Escolha uma opção: '
-options=("Selecionar Disco" "Listar discos" "Option 3" "Quit")
-select opt in "${options[@]}"
-do  
-    case $opt in
-        "Selecionar Disco")
-            SELECIONAR_DISCOS
-            echo $DISCOS
-            ;;
-        "Listar discos")
-            
-            LISTAR_DISCOS
-            ;;
-        "Option 3")
-            clear
-            echo "you chose choice $REPLY which is $opt"
-            ;;
-        "Quit")
-            break
-            ;;
-        *) 
-        clear
-        echo "Opção invalida: $REPLY";;
-    esac
+DETALHAR_DISCO(){
+
+  SELECIONAR_DISCOS
+
+  titulo="Escolha o disco que será copiado"
+  result=$(inxi -Fx | grep "$DISCOS" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g")
+  
+  
+}
+
+
+
+
+while [ 1 ]
+do
+
+OPT=$(whiptail --title "Operative Systems" --menu "Make your choice" 16 100 9 \
+	"1)" "Lista os discos"   \
+	"2)" "Detalhes do disco"  \
+	"3)" "Selecionar disco" \
+	"5)" "How much time used in kernel mode and in user mode in the last secound." \
+	"6)" "Break" \
+	"9)" "End script" 3>&2 2>&1 1>&3)
+
+case $OPT in
+
+	"1)")   LISTAR_DISCOS
+	;;
+  
+	"2)")   DETALHAR_DISCO
+	;;
+  
+	"3)")   SELECIONAR_DISCOS
+	;;
+
+	"6)")   break
+	;;
+
+	"4)")   result=$(ps ax | wc -l)
+	;;
+
+	"9)") exit
+        ;;
+esac
+whiptail --title "$titulo" --msgbox "$result" 20 78
+
 done
 
 #comandos para clonar
