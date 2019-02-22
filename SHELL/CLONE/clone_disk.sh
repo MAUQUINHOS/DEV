@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Este programa serve para clonagem de HD's, Pendrive, CD'd, DVD's e etc..
-# ./clone_disk.sh #Clona dicos com terminal
+# ./clone_disk.sh #Clona discos com terminal
 #
 #
 #
@@ -9,10 +9,10 @@
 ID=$(id | grep "root")
 [[ "$ID" ]] || { clear; echo 'Você não é root, e não consegue executar!' >&2; exit 1; }
 #
-# Verifica se contém programas necessários para execução do código
+# Verifica atende os requisitos necessários para execução do código
 read programas <<< "$(which dd 2> /dev/null)"
 #
-# Condição do de veirificação de programas
+# Condição de requisistos 
 [[ "$programas" ]] || {   echo 'neither whiptail nor dialog found' >&2;   exit 1; }
 #
 #
@@ -32,11 +32,20 @@ LISTAR_DISCOS(){
   # Lista todos os discos disponiveis na computador
   dsk=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print $1 " TIPO:" $6 " TAMANHO:" $4}' | sort -u)
    
-  #Exibe os discos disponíveis
-  
+  #Exibe os discos disponíveis em msgbox
   titulo="Listando discos"
   result="DISCOS:\n$dsk"
  
+}
+
+MENU(){
+MNU="(1)Lista os discos | (2)Detalhes do disco | (3)Selecionar disco"
+DISCOS=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print "|\n|__" $1 " \n|\tTIPO:" $6 " TAMANHO:" $4 "\n|"}')
+clear
+echo "DISCOS__________________________
+|$MNU
+$DISCOS
+|________________________________"
 }
 
 DETALHAR_DISCO(){
