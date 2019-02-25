@@ -1,9 +1,8 @@
 #!/bin/bash
 #
-# Este programa serve para clonagem de HD's, Pendrive, CD'd, DVD's e etc..
+# Este programa serve para clonagem de HD's, Pendrive's, CD's, DVD's e etc..
 # ./clone_disk.sh #Clona discos com terminal
-#
-#
+# 
 #
 # Check usuario root
 ID=$(id | grep "root")
@@ -40,12 +39,14 @@ LISTAR_DISCOS(){
 
 MENU(){
 MNU="(1)Lista os discos | (2)Detalhes do disco | (3)Selecionar disco"
-DISCOS=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print "|\n|__" $1 " \n|\tTIPO:" $6 " TAMANHO:" $4 "\n|"}')
+DISCOS=$(lsblk -dp | grep -e "disk\|rom" | awk -F" " '{print "|__" $1 " \n|\tTIPO:" $6 " TAMANHO:" $4 "\n|"}')
 clear
-echo "DISCOS__________________________
-|$MNU
+echo -e "DISCOS__________________________
+|
 $DISCOS
-|________________________________"
+ OPÇÕES___________________________
+|\n| $MNU
+|_________________________________"
 }
 
 DETALHAR_DISCO(){
