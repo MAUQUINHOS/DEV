@@ -1,0 +1,121 @@
+
+############################################
+# 1º 
+# DECLARANDO VARIAVEIS GLOBAIS
+# PREENCHER TODAS AS VARIAVEIS
+#
+:global USER ""
+:global PASS ""
+:global ptp_user ""
+:global ptp_pass ""
+:global porta_winbox ""
+#
+# GERENCIAMENTO ROMON
+:global romon_pass ""
+#
+# NOME DO SISTEMA
+:global nome_sistema ""
+#
+# GERENCIAMENTO SNMP
+:global community_nome ""
+#
+# IP's DA REDE
+# 192.168.1.100 RB750
+# 192.168.1.103 PTP_03
+# 192.168.1.254 ether04 Manutenção
+# 192.168.1.200 IP PPTP remoto, Rota Interna 192.168.1.0/24
+#
+# 
+#
+############################################
+# 2º 
+# Renomeando as Interfaces do Equipamento
+#
+/interface ethernet
+	set [ find default-name=ether1 ] advertise=10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full,2500M-full,5000M-full,10000M-full loop-protect=on name=ether1-WAN
+	set [ find default-name=ether2 ] advertise=10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full,2500M-full,5000M-full,10000M-full loop-protect=on name=ether2-PTP01
+	set [ find default-name=ether3 ] advertise=10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full,2500M-full,5000M-full,10000M-full disabled=yes name=ether3-PTP02
+	set [ find default-name=ether4 ] advertise=10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full,2500M-full,5000M-full,10000M-full arp=proxy-arp name=ether4-MANU
+	set [ find default-name=ether5 ] advertise=10M-half,10M-full name=ether5-QUARTINHO
+#
+############################################
+# 3º 
+# Interface de Backup, Redundância ou Segrecação Bonding
+# nela é feito o monitoramento através das interfaces de PTP
+#
+/interface bonding
+  add arp-ip-targets=192.168.1.103 link-monitoring=arp mode=active-backup name=bonding1 primary=ether2-PTP01 slaves=ether2-PTP01,ether3-PTP02 transmit-hash-policy=layer-2-and-3
+#
+############################################
+# 4º 
+# Criando uma Bridge
+# Nesta etapa irá cair a conexão
+#
+# Bridge distribui o link obtido na WAN
+/interface bridge
+	add arp=proxy-arp name=bridge1
+/interface bridge port
+	add bridge=bridge1 interface=ether1-WAN
+	add bridge=bridge1 interface=bonding1
+	add bridge=bridge1 interface=ether5-QUARTINHO
+#
+############################################
+# 5º 
+# Adicionando IP's nas interfaces
+# Verificar se as portas estão corretas
+#
+/ip address
+  add address=192.168.1.100/24 interface=ether1-WAN
+  add address=192.168.1.100/24 interface=bonding1
+#
+  add address=192.168.1.100/24 disabled=yes interface=bridge1
+  add address=192.168.1.254/24 disabled=yes interface=ether4-MANU
+  add address=192.168.1.100/24 disabled=yes interface=ether5-QUARTINHO
+#
+############################################
+# 6º 
+# Servidor PPTP 
+# Verificar se as porta 1723 esta aberta no modem
+#  
+/interface pptp-server server
+  set authentication=chap,mschap1,mschap2 default-profile=default enabled=yes
+/ppp secret
+  add local-address=192.168.1.100 name=ptp_user password=$ptp_pass remote-address=192.168.1.200 routes=192.168.1.0/24 service=pptp  
+#
+############################################
+# 7º 
+# Serviços de gerenciamento habilitados
+# Verificar as senhas padrões de Gerenciamento
+#    
+/ip cloud
+  set ddns-enabled=yes
+/snmp
+  set enabled=yes trap-version=3
+/tool romon
+  set enabled=yes id=00:00:00:00:01:00 secrets=$romon_pass
+/snmp community
+  set [ find default=yes ] addresses=0.0.0.0/0 name=$community_nome
+#
+############################################
+# 8º 
+# Renomear sistema e ajustar hora
+# Desabilitando serviços desnecessários
+#
+/ip service
+  set telnet disabled=yes
+  set ftp disabled=yes
+  set www disabled=yes
+  set ssh disabled=yes
+  set api disabled=yes
+  set api-ssl disabled=yes
+  set winbox port=$porta_winbox
+/system clock
+  set time-zone-name=America/Sao_Paulo
+/system identity
+  set name=$nome_sistema
+  
+  
+  
+  
+  
+	
