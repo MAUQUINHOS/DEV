@@ -1,0 +1,104 @@
+############################################
+# 1º 
+# DECLARANDO VARIAVEIS GLOBAIS
+# PREENCHER TODAS AS VARIAVEIS
+#
+:global USER ""
+:global PASS ""
+#
+# GERENCIAMENTO ROMON
+:global romonpass ""
+#
+# GERENCIAMENTO WIFI
+:global wifi_pass ""
+:golbal wifi_ssid "PTP_JP_01"
+:global wifi_canal "5300"
+#
+# NOME DO SISTEMA
+:global nome_sistema ""
+#
+# GERENCIAMENTO SNMP
+:global community_nome ""
+#
+# IP's DA REDE
+# 192.168.1.101 SXT PTP AP1
+# 192.168.1.103 SXT PTP CLIENTE1
+:global IPlocal "192.168.1.101"
+:global IPlocalmask "192.168.1.101/24"
+:global IPremoto "192.168.1.103"
+
+#
+# Portas utilizadas e respectivas interfaces
+# ether1 = WAN
+# wlan01 = Wireless
+# bridge1 = bridge
+# 
+############################################
+# 2º 
+# Renomeando e setando as Interfaces do Equipamento
+#
+/interface ethernet
+  set [ find default-name=ether1 ] advertise=10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full,2500M-full,5000M-full,10000M-full speed=100Mbps
+
+/interface wireless
+  set [ find default-name=wlan1 ] antenna-gain=2 band=5ghz-onlyac channel-width=20/40/80mhz-eeCe disabled=no frequency=$wifi_canal frequency-mode=superchannel mode=ap-bridge ssid=$wifi_ssid wps-mode=disabled
+/interface wireless security-profiles
+  set [ find default=yes ] authentication-types=wpa-psk,wpa2-psk eap-methods="" mode=dynamic-keys supplicant-identity=MikroTik wpa-pre-shared-key=$wifi_pass wpa2-pre-shared-key=$wifi_pass
+# 
+############################################
+# 3º 
+# Criando uma Bridge
+# Nesta etapa irá cair a conexão
+#
+/interface bridge
+  add name=bridge1
+/interface bridge port
+  add bridge=bridge1 hw=no interface=ether1
+  add bridge=bridge1 interface=wlan1
+# 
+############################################
+# 4º 
+# Adicionando IP's nas interfaces
+# Verificar se as portas estão corretas
+#
+/ip address
+  add address=$IPlocalmask interface=ether1
+  add address=$IPlocalmask interface=bridge1
+  add address=$IPlocalmask interface=wlan1
+#  
+############################################
+# 5º 
+# Serviços de gerenciamento habilitados
+# Verificar as senhas padrões de Gerenciamento
+#    
+/system identity
+  set name=$nome_sistema
+
+/snmp
+  set enabled=yes trap-version=3
+/snmp community
+  set [ find default=yes ] addresses=0.0.0.0/0 name=$community_nome
+
+/tool netwatch
+  add down-script=":log info \"Sem acesso ao Cliente na outra ponta\"" host=$IPremoto interval=5m
+
+/tool romon
+  set enabled=yes id=00:00:00:00:01:01 secrets=$romonpass
+#  
+############################################
+# 6º 
+# Renomear sistema e ajustar hora
+# Desabilitando serviços desnecessários
+#
+/ip service
+  set telnet disabled=yes
+  set ftp disabled=yes
+  set www disabled=yes
+  set ssh disabled=yes
+  set api disabled=yes
+  set api-ssl disabled=yes
+  set winbox port=$porta_winbox
+/system clock
+  set time-zone-name=America/Sao_Paulo
+/system identity
+  set name=$nome_sistema
