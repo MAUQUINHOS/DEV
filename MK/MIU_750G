@@ -5,18 +5,18 @@
 #
 :global USER ""
 :global PASS ""
-:global ptp_user ""
-:global ptp_pass ""
-:global porta_winbox ""
+:global ptpuser ""
+:global ptppass ""
+:global portawinbox ""
 #
 # GERENCIAMENTO ROMON
-:global romon_pass ""
+:global passromon ""
 #
 # NOME DO SISTEMA
-:global nome_sistema ""
+:global nomesistema ""
 #
 # GERENCIAMENTO SNMP
-:global community_nome ""
+:global nomecommunity ""
 #
 # IP's DA REDE
 # 192.168.1.100 RB750
@@ -87,7 +87,7 @@
 /interface pptp-server server
   set authentication=chap,mschap1,mschap2 default-profile=default enabled=yes
 /ppp secret
-  add local-address=192.168.1.100 name=ptp_user password=$ptp_pass remote-address=192.168.1.200 routes=192.168.1.0/24 service=pptp  
+  add local-address=192.168.1.100 name=ptpuser password=$ptppass remote-address=192.168.1.200 routes=192.168.1.0/24 service=pptp  
 #
 ############################################
 # 7º 
@@ -99,9 +99,9 @@
 /snmp
   set enabled=yes trap-version=3
 /tool romon
-  set enabled=yes id=00:00:00:00:01:00 secrets=$romon_pass
+  set enabled=yes id=00:00:00:00:01:00 secrets=$passromon
 /snmp community
-  set [ find default=yes ] addresses=0.0.0.0/0 name=$community_nome
+  set [ find default=yes ] addresses=0.0.0.0/0 name=$nomecommunity
 #
 ############################################
 # 8º 
@@ -115,9 +115,9 @@
   set ssh disabled=yes
   set api disabled=yes
   set api-ssl disabled=yes
-  set winbox port=$porta_winbox
+  set winbox port=$portawinbox
 /system clock
   set time-zone-name=America/Sao_Paulo
 /system identity
-  set name=$nome_sistema
+  set name=$nomesistema
   
