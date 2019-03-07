@@ -1,4 +1,3 @@
-
 ############################################
 # 1º 
 # DECLARANDO VARIAVEIS GLOBAIS
@@ -25,6 +24,14 @@
 # 192.168.1.254 ether04 Manutenção
 # 192.168.1.200 IP PPTP remoto, Rota Interna 192.168.1.0/24
 #
+# Portas utilizadas e respectivas interfaces
+# ether1 = WAN
+# ether2 = PTP01
+# ether3 = PTP02
+# ether4 = MANUTENÇÃO
+# ether5 = QUARTINHO
+# bridge1 = 
+# bonding1 = 
 # 
 #
 ############################################
@@ -114,8 +121,3 @@
 /system identity
   set name=$nome_sistema
   
-  
-  
-  
-  
-	
