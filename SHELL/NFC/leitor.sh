@@ -44,20 +44,16 @@ then
 else
 mysql -uroot -p$SENHA <<EOF
 use nfc;
-select nome_users from users where id_users=$meu_ID;
+#select nome_users * from users where ;
+#select * from profile;
+select nome_users from users where id_users=6;
 EOF
 fi
+echo ""
         #select * from users;
-        #INSERT INTO `nfc`.`users` (`id_users`, `cpf_users`, `profile_ra_user`, `nome_users`, `lastname_users`, `add_users`) VALUES ('1', '333333333333', '136328', 'marcos', 'r pereira', '00:00:00');
-        #select * from profile;
-select nome_users from users where id_users=$meu_ID;
-EOF)
-echo "MINHA VAR: $my_VAR"
-fi
-        #select * from users;
-        #INSERT INTO `nfc`.`users` (`id_users`, `cpf_users`, `profile_ra_user`, `nome_users`, `lastname_users`, `add_users`) VALUES ('1', '333333333333', '136328', 'marcos', 'r pereira', '00:00:00');
         #select * from profile;
 }
+
 
 EXIBE_TELA(){
         echo "+========= N F C ==========+"
