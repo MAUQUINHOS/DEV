@@ -3,6 +3,9 @@
 import sys
 from time import sleep
 #
+# Referencias
+# https://www.instructables.com/id/Raspberry-Pi-Tutorial-How-to-Use-a-Buzzer/
+#
 # laco de repetição
 # arg1 = 0.9 /segundos ou milesimos 
 # arg2 = 3   /numeros de voltas do laco 
