@@ -18,13 +18,13 @@ PORT_GREEN=21 # LED GREEN
 PORT_BUZZ=26 # BUZZER
 #
 #VARIAVEIS DO SISTEMA
-i=1 #contador
-x=sys.argv[1] #DEFINE QUAL FUNCAO RODA
+x=sys.argv[1] #DEFINE QUAL FUNCAO RODAR ATRAVES DE PARAMETROS (R|G|B = red | green | buzzer )
 #
 #DEFININDO FUNCAO LED RED
 def func_ledr(sec, voltas):
+	i=1
 # RESET PORTA RED
-  GPIO.setup(PORT_RED,GPIO.OUT)
+	GPIO.setup(PORT_RED,GPIO.OUT)
 #
 # VARIAVEIS LOCAIS ARGS SEC(argv[2]) VOLTAS(argv[3])
 	sec=float(sec)
@@ -48,6 +48,7 @@ def func_ledr(sec, voltas):
 #
 #DEFININDO FUNCAO LED GREEN
 def func_ledg(sec, voltas):
+	i=1
 # RESET PORTA GREEN
 	GPIO.setup(PORT_GREEN,GPIO.OUT)
 #
@@ -56,7 +57,7 @@ def func_ledg(sec, voltas):
 	voltas=int(voltas)
 #
 # ATIVA BUZZER
-  func_buz(0.1,2)
+  	func_buz(0.1,2)
 #
 # LACO
 	while(i <= voltas ):
@@ -73,6 +74,7 @@ def func_ledg(sec, voltas):
 #
 #DEFININDO FUNCAO BUZZER
 def func_buz(sec, voltas):
+	i=1
 #
 # VARIAVEIS LOCAIS ARGS SEC(argv[2]) VOLTAS(argv[3])
 	sec=float(sec)
