@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python
 #ENCODE UTF-8
 # -*- coding: utf-8 -*-
 #BIBLIOTECAS
