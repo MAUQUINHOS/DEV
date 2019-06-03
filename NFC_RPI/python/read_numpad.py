@@ -1,9 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # Bibliotecas
-import struct
-import time
-import sys
+import struct, time, sys
+#
+#
+##########################
+# MAPEAMENTO DAS TECLAS
+#    code == 11:print("0")
+#    code == 2:	print("1")
+#    code == 3:	print("2")
+#    code == 5:	print("4")
+#    code == 6:	print("5")
+#    code == 7:	print("6")
+#    code == 8:	print("7")
+#    code == 9:	print("8")
+#    code == 10:print("9")
+##########################
 #
 # Codigo modificado
 # Original file: https://stackoverflow.com/questions/5060710/format-of-dev-input-event/10665053
