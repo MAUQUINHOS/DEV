@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 # Bibliotecas
 import struct,time, sys
-import subprocess # Comando Call
+from subprocess import call # Comando Call
 from datetime import datetime # Comando DATE
-
-now= datetime.now() # current date and time
-
-
+now = datetime.now() # current date and time
 #
 ##########################
 # MAPEAMENTO DAS TECLAS
@@ -86,7 +83,8 @@ while event:
 			print(IDNFC)
 			INFO = IDNFC              
 	# QUERY NO SQL		
-	#		call("./select_sql.sh", "root", "123", "nfc", INFO)
+	#		INFO='marcos'
+			call('./exec_shell.sh root abc123!@\# nfc '+INFO, shell=True)
 			DATAS=now.strftime("%d.%b %Y %H:%M:%S")
 			print(INFO, DATAS)
 			INFO = IDNFC = ""
