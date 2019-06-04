@@ -9,9 +9,6 @@
 ###########################################################
 #
 # Iniciando o servidor WEB
-SERVER_WEB=$(python -m server.py & echo $!)
+python -m server.py & echo -e "\tsudo kill -9 $!"
 # Ativa o Leitor NFC
-LEITOR_NFC=$(python read_nfc.py & echo $!)
-echo "Para matar os servicos"
-echo -e "\tsudo kill -9 $LEITOR_NFC"
-echo -e "\tsudo kill -9 $SERVER_WEB"
+python read_nfc.py & echo -e "\tsudo kill -9 $!"
