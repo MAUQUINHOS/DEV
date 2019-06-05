@@ -37,7 +37,6 @@ now = datetime.now() # current date and time
 # usb-Sycreader_RFID_Technology_Co.__Ltd_SYC_ID_IC_USB_Reader_08FF20140315-event-kbd -> ../event4
 # CAMINHO DA LEITURA
 EVENTO1=sys.argv[1]
-EVENTO2=sys.argv[2]
 infile_path ="/dev/input/"+EVENTO1
 print("")
 print("3- LENDO NFC")
@@ -87,7 +86,7 @@ while event:
 				INFO = IDNFC
 # QUERY NO SQL
 				call('./select_sql.sh root abc123 nfc '+INFO, shell=True)
-				print("Chamando select.sql"+INFO)
+#				print("Chamando select.sql"+INFO)
 				INFO = IDNFC = ""
 			elif len(IDNFC) > 10:
 				INFO = IDNFC = ""				      
