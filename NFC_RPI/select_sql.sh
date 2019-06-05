@@ -1,7 +1,9 @@
 #!/bin/bash
 EVENTO_NFC=$(ls -l  /dev/input/by-{path,id}/ | grep RFID | cut -d"/" -f2)
 EVENTO_NUMPAD=$(ls -l  /dev/input/by-{path,id}/ | grep "event-kbd" | grep -v "$EVENTO_NFC" | cut -d"/" -f2 | sort -u)
+# Debug Local
 echo -e "5- QUERY NO SQL"
+#
 if [[ -z "$1" ]]
 then
 	echo "Erro no envio dos parametros: ~# $0 name pass db info"
@@ -47,20 +49,21 @@ else
 #		echo "AR10: ${ARRAY[10]}"
 #		echo "AR11: ${ARRAY[11]}"
 #		echo "AR12: ${ARRAY[12]}"
-#		echo "AR13: ${ARRAY[13]}" SENHA
+#		echo "AR13: ${ARRAY[13]}"# SENHA
 #		echo "AR14: ${ARRAY[14]}"
 #		echo "AR15: ${ARRAY[15]}"
 #		echo "AR16: ${ARRAY[16]}"
 #		echo "NUMPAD: $SENHA"
 #		echo "BASEDB: ${ARRAY[13]}"
+#exit 1;
 		echo -e "6.1 - VALIDA SENHA\n"
 		if [ "$SENHA" -eq ${ARRAY[13]} ]; then
 			python alertas.py g 0.05 1
-			status="${ARRAY[9]}"
-			img="${ARRAY[10]}"
-			info="<b>${ARRAY[6]}</b> ${ARRAY[7]}"
+			status="${ARRAY[10]}"
+			img="${ARRAY[11]}"
+			info="<b>${ARRAY[7]}</b> ${ARRAY[8]}"
 			datas=`date "+%H:%M:%S - %d/%m/%Y"`
-			sumary="<p>RA: ${ARRAY[8]} <br /> Curso:<b>${ARRAY[11]}</b></p>"
+			sumary="<p>RA: ${ARRAY[9]} <br /> Curso:<b>${ARRAY[12]}</b></p>"
 			LOG="<!-- $4 -->\n<tr data-status='$status'><td><div class='media'><a href='#' class='pull-left'><img src='$img' class='media-photo'></a><div class='media-body'><h4 class='title'>$info</h4><span class='media-meta pull-right'>$datas</span></div><p class='summary'>$sumary</p></div></td></tr>\n"
 			echo $LOG >> web/log_file.tmp
 		else
@@ -80,7 +83,12 @@ fi
 FILE="web/temp.tmp"
 echo -e "7 - GRAVA LOG\n"   
 if [ -f $FILE ]; then
-	tail -n 20 web/log_file.tmp | tac >> $FILE 
-else 
-	echo  -e "\n\t Este arquivo nao existe: $FILE"
+	tail -n 20 web/log_file.tmp | tac > $FILE 
+	LINHAS=$(cat $FILE | wc -l); 
+	if [ $LINHAS -gt "100" ]; then
+		rm web/log_file.tmp 
+	fi
+else
+	echo "Arquivo criado temp.tmp"
+	echo "" > web/temp.tmp
 fi
