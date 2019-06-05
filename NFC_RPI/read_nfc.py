@@ -80,22 +80,12 @@ while event:
                         
 # CHECA A IDNFC E IMPRIME
 		if len(IDNFC) >= 10:
-			print(IDNFC)
-			INFO = IDNFC              
-	# QUERY NO SQL		
-	#		INFO='marcos'
-			call('./exec_shell.sh root abc123!@\# nfc '+INFO, shell=True)
-			DATAS=now.strftime("%d.%b %Y %H:%M:%S")
-			print(INFO, DATAS)
-			INFO = IDNFC = ""
-			CORPO="<tr data-status='aluno'><td><div class='media'><a href='#' class='pull-left'><img src='https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg' class='media-photo'></a><div class='media-body'><h4 class='title'>"+INFO+"</h4><span class='media-meta pull-right'>"+DATAS+"</span></div><p class='summary'>Ut enim ad minim veniam, quis nostrud exercitation...</p></div></td></tr>\n"
-	#		with open('web/log_file.tmp', 'a') as f:
-	#			f.write(CORPO)
-	#			if(INFO == ""):
-	#				INFO="VAZIO"
-	#				print(INFO)  
-	#		f.close()
-
+#			print(IDNFC)
+			INFO = IDNFC
+# QUERY NO SQL
+			IDNFC = ""
+			call('./select_sql.sh root abc123 nfc '+INFO, shell=True)
+			INFO = IDNFC = ""          
         event = in_file.read(EVENT_SIZE)
 # FECHA O ARQUIVO
 in_file.close()
