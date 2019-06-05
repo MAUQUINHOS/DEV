@@ -22,7 +22,8 @@ else
 #		m_var=$(echo "SELECT nome_users,lastname_users,profile_ra_user,status_profile,img_profile,curso_profile FROM users,profile,cards WHERE id_cards='$4'" | sudo mysql -u$1 -p$2 $3;)
 		m_var=$(echo "SELECT nome_users,lastname_users,profile_ra_user,status_profile,img_profile,curso_profile, passwd_users FROM users,profile,cards where id_users=(select users_id_users from cards where id_cards='$4')" | sudo mysql -u$1 -p$2 $3;)
 		python alertas.py g 0.05 1
-# CHAMA TECLADO NUMPAD E PEGA SENHA	
+# CHAMA TECLADO NUMPAD E PEGA SENHA
+		echo -e "6- ATIVA NUMPAD, ESPERA SENHA"
 		SENHA=$(python read_numpad.py $EVENTO_NUMPAD)
 		counta=7
 		ARRAY=()
@@ -52,6 +53,7 @@ else
 #		echo "AR16: ${ARRAY[16]}"
 #		echo "NUMPAD: $SENHA"
 #		echo "BASEDB: ${ARRAY[13]}"
+		echo -e "6.1 - VALIDA SENHA\n"
 		if [ "$SENHA" -eq ${ARRAY[13]} ]; then
 			python alertas.py g 0.05 1
 			status="${ARRAY[9]}"
@@ -75,7 +77,8 @@ else
 		
 	fi
 fi
-FILE="web/temp.tmp"    
+FILE="web/temp.tmp"
+echo -e "7 - GRAVA LOG\n"   
 if [ -f $FILE ]; then
 	tail -n 20 web/log_file.tmp | tac >> $FILE 
 else 
