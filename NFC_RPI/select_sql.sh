@@ -1,7 +1,4 @@
 #!/bin/bash
-#
-# Para testar use:  ./select_sql.sh root abc123 nfc 1669336581
-#
 EVENTO_NFC=$(ls -l  /dev/input/by-{path,id}/ | grep RFID | cut -d"/" -f2)
 EVENTO_NUMPAD=$(ls -l  /dev/input/by-{path,id}/ | grep "event-kbd" | grep -v "$EVENTO_NFC" | cut -d"/" -f2 | sort -u)
 echo -e "5- QUERY NO SQL"
@@ -10,13 +7,10 @@ then
 	echo "Erro no envio dos parametros: ~# $0 name pass db info"
 else
 #	sql=$(echo "SELECT nome_users FROM users, cards WHERE id_cards='$4'" | sudo mysql -u$1 -p$2 $3;)
-	sql=$(echo "select nome_users from users, cards where id_users=(select users_id_users from cards where id_cards='$4')" | sudo mysql -u$1 -p$2 $3;)
-
-	echo "SQL: $sql"
-	echo -e "\nSQL1: L$sql1"
-#	exit 1
+	sql=$(echo "SELECT nome_users FROM users, cards WHERE id_users=(SELECT users_id_users FROM cards WHERE id_cards='$4')" | sudo mysql -u$1 -p$2 $3;)
+#	echo -e "SQL: $sql \nSQL1: L$sql1"
 	if [ -z "${sql}" ]; then
-		sudo python alertas.py r 0.05 4
+		python alertas.py r 0.05 4
 		status="outros"
 		img="img/sem_cadastro.png"
 		info="Nome do aluno"
@@ -60,7 +54,6 @@ else
 #		echo "BASEDB: ${ARRAY[13]}"
 		if [ "$SENHA" -eq ${ARRAY[13]} ]; then
 			python alertas.py g 0.05 1
-			exit 1
 			status="${ARRAY[9]}"
 			img="${ARRAY[10]}"
 			info="<b>${ARRAY[6]}</b> ${ARRAY[7]}"
@@ -84,6 +77,7 @@ else
 fi
 FILE="web/temp.tmp"    
 if [ -f $FILE ]; then
-	rm $FILE 
+	tail -n 20 web/log_file.tmp | tac >> $FILE 
+else 
+	echo  -e "\n\t Este arquivo nao existe: $FILE"
 fi
-tail -n 20 web/log_file.tmp | tac > $FILE
