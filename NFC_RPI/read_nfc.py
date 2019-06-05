@@ -40,7 +40,6 @@ EVENTO1=sys.argv[1]
 infile_path ="/dev/input/"+EVENTO1
 print("")
 print("3- LENDO NFC")
-print(infile_path)
 # Formata    o do STRUCT
 #long int, long int, unsigned short, unsigned short, unsigned int
 FORMAT = 'llHHI'
