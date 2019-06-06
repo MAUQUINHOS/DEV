@@ -11,6 +11,9 @@
 # Limpando a tela
 clear
 #
+python alertas.py g 0.05 1
+python alertas.py b 0.0005 1
+python alertas.py g 0.05 1
 # Detectando EVENTO NFC e TECLADO
 EVENTO_NFC=$(ls -l  /dev/input/by-{path,id}/ | grep RFID | cut -d"/" -f2)
 EVENTO_NUMPAD=$(ls -l  /dev/input/by-{path,id}/ | grep "event-kbd" | grep -v "$EVENTO_NFC" | cut -d"/" -f2 | sort -u)
