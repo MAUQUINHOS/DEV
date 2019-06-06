@@ -8,7 +8,6 @@ if [[ -z "$1" ]]
 then
 	echo "Erro no envio dos parametros: ~# $0 name pass db info"
 else
-#	sql=$(echo "SELECT nome_users FROM users, cards WHERE id_cards='$4'" | sudo mysql -u$1 -p$2 $3;)
 	sql=$(echo "SELECT nome_users FROM users, cards WHERE id_users=(SELECT users_id_users FROM cards WHERE id_cards='$4')" | sudo mysql -u$1 -p$2 $3;)
 #	echo -e "SQL: $sql \nSQL1: L$sql1"
 	if [ -z "${sql}" ]; then
@@ -56,7 +55,7 @@ else
 #		echo "NUMPAD: $SENHA"
 #		echo "BASEDB: ${ARRAY[13]}"
 #exit 1;
-		echo -e "6.1 - VALIDA SENHA\n"
+		echo -e "6.1 - VERIFICA A SENHA DIGITADA"
 		if [ "$SENHA" -eq ${ARRAY[13]} ]; then
 			python alertas.py g 0.05 1
 			status="${ARRAY[10]}"
@@ -68,11 +67,11 @@ else
 			echo $LOG >> web/log_file.tmp
 		else
 			python alertas.py r 0.05 4 
-			status="outros"
+			status="OUTROS"
 			img="img/sem_cadastro.png"
 			info="Nome do aluno"
 			datas=`date "+%H:%M:%S - %d/%m/%Y"`
-			sumary="TAG: <b>LOG: </b> SENHA ERRADA."
+			sumary="LOG: <b>  SENHA ERRADA.</b>"
 			LOG="<tr data-status='$status' class='alert alert-danger' role='alert'><td><div class='media'><a href='#' class='pull-left'><img src='$img' class='media-photo'></a><div class='media-body'><h4 class='title'>$info</h4><span class='media-meta pull-right'>$datas</span></div><p class='summary'>$sumary</p></div></td></tr>\n"
 			echo "<!-- $4 Não cadastrado --> $LOG" >> web/log_file.tmp
 			
@@ -81,7 +80,7 @@ else
 	fi
 fi
 FILE="web/temp.tmp"
-echo -e "7 - GRAVA LOG\n"   
+echo -e "7 - GRAVA LOG"   
 if [ -f $FILE ]; then
 	tail -n 20 web/log_file.tmp | tac > $FILE 
 	LINHAS=$(cat $FILE | wc -l); 
