@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Bibliotecas
 import struct, time, sys
+import alertas
 #
 #
 ##########################
@@ -22,7 +23,8 @@ import struct, time, sys
 #
 # Para detectar o evento:  ls -l  /dev/input/by-{path,id}/ 
 # Caminho do arquivoque será lido
-infile_path = "/dev/input/event0"
+EVENTO2=sys.argv[1]
+infile_path ="/dev/input/"+EVENTO2
 # Formatação do STRUCT
 #long int, long int, unsigned short, unsigned short, unsigned int
 FORMAT = 'llHHI'
@@ -43,28 +45,41 @@ while event:
     if code != 0 and value != 0:
 #		print("Code: %u, Valor: %u " % (code, value))
 		if code == 82:
+				alertas.func_buz(0.00001,1)
 				PASS += "0"
 		if code == 79:
+				alertas.func_buz(0.00001,1)
 				PASS += "1"
 		elif code == 80:
+				alertas.func_buz(0.00001,1)
 				PASS += "2"
 		elif code == 81:
+				alertas.func_buz(0.00001,1)
 				PASS += "3"
 		elif code == 75:
+				alertas.func_buz(0.00001,1)
 				PASS += "4"
 		elif code == 76:
+				alertas.func_buz(0.00001,1)
 				PASS += "5"
 		elif code == 77:
+				alertas.func_buz(0.00001,1)
 				PASS += "6"
 		elif code == 71:
+				alertas.func_buz(0.00001,1)
 				PASS += "7"
 		elif code == 72:
+				alertas.func_buz(0.00001,1)
 				PASS += "8"
 		elif code == 73:
+				alertas.func_buz(0.00001,1)
 				PASS += "9"
 # CHECA A SENHA E IMPRIME
-		if code == 96 and len(PASS) >= 6 and len(PASS) <= 20:
+		if code == 96 and len(PASS) >= 5 and len(PASS) <= 20:
+				alertas.func_buz(0.001,2)
+				alertas.func_buz(0.01,1)
 				print(PASS)
+				break;
 				PASS=""
 		elif code == 96:
 				print("SENHA FORA DO PADRAO  6 >= <= 20")
