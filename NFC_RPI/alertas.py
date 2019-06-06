@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/python
 #ENCODE UTF-8
 # -*- coding: utf-8 -*-
 #BIBLIOTECAS
@@ -18,7 +18,8 @@ PORT_GREEN=21 # LED GREEN
 PORT_BUZZ=26 # BUZZER
 #
 #VARIAVEIS DO SISTEMA
-x=sys.argv[1] #DEFINE QUAL FUNCAO RODAR ATRAVES DE PARAMETROS (R|G|B = red | green | buzzer )
+#i=1 #contador
+x=sys.argv[1] #DEFINE QUAL FUNCAO RODA
 #
 #DEFININDO FUNCAO LED RED
 def func_ledr(sec, voltas):
@@ -31,13 +32,13 @@ def func_ledr(sec, voltas):
 	voltas=int(voltas)
 #
 # ATIVA BUZZER
-	func_buz(0.3,3)
+	func_buz(sec,voltas)
 #
 # LACO
 	while(i <= voltas ):
 #		ATIVA LED RED
 		GPIO.output(PORT_RED,GPIO.HIGH) 
-		time.sleep(0.2) 
+		time.sleep(sec) 
 #		DESATIVA LED RED NA PORTA
 		GPIO.output(PORT_RED,GPIO.LOW)
 		time.sleep(sec)
@@ -57,13 +58,13 @@ def func_ledg(sec, voltas):
 	voltas=int(voltas)
 #
 # ATIVA BUZZER
-  	func_buz(0.1,2)
+  	func_buz(sec,voltas)
 #
 # LACO
 	while(i <= voltas ):
 #		ATIVA LED GREEN
 		GPIO.output(PORT_GREEN,GPIO.HIGH) 
-		time.sleep(0.2) 
+		time.sleep(sec) 
 #		DESATIVA LED GREEN
 		GPIO.output(PORT_GREEN,GPIO.LOW)
 		time.sleep(sec)
@@ -98,7 +99,14 @@ def func_buz(sec, voltas):
 #SELECIONA FUNCAO QUE VAI RODAR
 if x == 'b':
 	func_buz(sys.argv[2],sys.argv[3])
+elif x == 'B':
+	func_buz(sys.argv[2],sys.argv[3])
 if x == 'g':
+	func_ledg(sys.argv[2],sys.argv[3])
+elif x == 'G':
 	func_ledg(sys.argv[2],sys.argv[3])
 if x == 'r':
 	func_ledr(sys.argv[2],sys.argv[3])
+elif x == 'R':
+	func_ledr(sys.argv[2],sys.argv[3])
+
