@@ -38,12 +38,12 @@ Ele adiciona uma camada a mais de segurança, na Tecnologia `NFC` e `RFID`, send
 ## Agradecimentos aos Mestres
 
 ## Orientador 
-Por ter acreditado no projeto, um muito obrigado.
-* Ismael Moura Parede,
+Por ter acreditado no projeto, muito obrigado.
+* Ismael Moura Parede
 
 ### A Banca 
 Por avaliarem o projeto e de forma colaborativa apontar nossos erros, para que sempre nos aperfeiçoemos. Obrigado!
-* Almir Meira ALves
+* Almir Meira Alves
 * Kleber Silva Divino
 
 ![WhatsApp Image 2019-06-19 at 12 13 27](https://user-images.githubusercontent.com/47393713/59791694-102ca380-92a9-11e9-9162-c85c197b9783.jpeg)
