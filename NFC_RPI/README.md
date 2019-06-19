@@ -1,4 +1,5 @@
-# Controle de Acesso
+## CHANGELOG 19/06/19
+# Controle de Acesso V1.0
 
 UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
 ## Como usar:
