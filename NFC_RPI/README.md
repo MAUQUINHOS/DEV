@@ -7,7 +7,7 @@ UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
  - 1 : Baixe o conteúdo, do repositório [NFC_RPI]
  - 2 : Salve-o em uma pasta, NFC_RPI
  - 3 : Dê permissão de execução ao conteúdo do Repositório
- - 4 : Instale o arquivo Sql da pasta install, para ter a base de dados
+ - 4 : Instale o arquivo .sql da pasta INSTALL, para ter a obter base de dados
 ```
 ### Exemplo
 ```
@@ -26,6 +26,12 @@ Select an editor.  To change later, run 'select-editor'.
   1. /bin/nano        <---- easiest
 
 Choose 1-3 [1]: 1
+```
+
+### Base de Dados
+```
+ - 1 : Verifique se sua máquina contêm MySQL
+ - 2 : Faça o login, e instale o arquivo .sql que está na pasta INSTALL
 ```
 ### Adicione ao final, para iniciar no Reboot
 `@reboot     ~/NFC_RPI/index.sh`
