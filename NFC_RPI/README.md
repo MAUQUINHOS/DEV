@@ -15,7 +15,7 @@ UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
 
 ## Execute 
 ```
-./index.sh
+./inicio.sh
 ```
 ### Adicionais
 ```
