@@ -13,13 +13,24 @@ UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
 ~# cd ~/NFC_RPI/
 ```
 
-## Execute o index.sh
+## Execute 
 ```
 ./index.sh
 ```
+### Adicionais
+```
+~# crontab -e
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+
+Choose 1-3 [1]: 1
+```
+### Adicione ao final, para iniciar no Reboot
+`@reboot     ~/NFC_RPI/index.sh`
+* Lembrando que o arquivo precisa estar em modo de execuação
 ## O que é?
 
-Controle de acesso é utilizado para controlar ambientes, pessoas e informação. Os arquivos neste repositório, junto com o Hardware descrito no documento, podem ser encontrados na biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
+Controle de acesso é utilizado para controlar ambientes, pessoas e informação. Os arquivos neste repositório, junto com o Hardware descrito no documento, podem ser encontrados na biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), estes documentos criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
 
 Este trabalho além de focar em segurança de baixo custo, mostra o quanto estamos sucetiveis a falta da segurança utilizando equipamentos, tecnicamente ultrapassados, mas que continuam em alta. Nos dando a falsa sensação de estarmos seguros.
 Ele adiciona uma camada a mais de segurança, na Tecnologia `NFC` e `RFID`, sendo necessário o uso de uma senha como segundo fator de segurança `2FA`.
