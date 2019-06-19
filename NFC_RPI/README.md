@@ -37,9 +37,12 @@ Controle de acesso é utilizado para controlar ambientes, pessoas e informação
 Este trabalho além de focar em segurança de baixo custo, mostra o quanto estamos sucetiveis a falta da segurança utilizando equipamentos, tecnicamente ultrapassados, mas que continuam em alta. Nos dando a falsa sensação de estarmos seguros.
 Ele adiciona uma camada a mais de segurança, na Tecnologia `NFC` e `RFID`, sendo necessário o uso de uma senha como segundo fator de segurança `2FA`.
 
+### SCHEMATIC
+![controle de acesso2](https://user-images.githubusercontent.com/47393713/59801878-de263c00-92be-11e9-9aa7-92f20c7daa7a.png)
+
 ## Agradecimentos aos Mestres
 
-## Orientador 
+### Orientador 
 Por ter acreditado no projeto, muito obrigado.
 * Ismael Moura Parede
 
