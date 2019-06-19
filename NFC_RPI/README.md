@@ -7,6 +7,7 @@ UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
  - 1 : Baixe o conteúdo, do repositório [NFC_RPI]
  - 2 : Salve-o em uma pasta, NFC_RPI
  - 3 : Dê permissão de execução ao conteúdo do Repositório
+ - 4 : Instale o arquivo Sql da pasta install, para ter a base de dados
 ```
 ### Exemplo
 ```
