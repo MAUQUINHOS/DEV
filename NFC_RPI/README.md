@@ -37,5 +37,5 @@ Por avaliarem o projeto e de forma colaborativa apontar nossos erros, para que s
 
 ![WhatsApp Image 2019-06-19 at 12 13 27](https://user-images.githubusercontent.com/47393713/59791694-102ca380-92a9-11e9-9162-c85c197b9783.jpeg)
 
-Um agradecimento em especial a minha Mãe, não poder realizar um sonho, ver um filho formado, mas onde quer que esteja saiba que isso é pra você. Um dia a gente se encontra, deixa meu café pronto!! Te AMO.
+Um agradecimento em especial a minha Mãe, não pode realizar um sonho, ver um filho formado, mas onde quer que esteja saiba que isso é pra você. Um dia a gente se encontra, deixa meu café pronto!! Te AMO.
 
