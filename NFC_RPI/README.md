@@ -39,9 +39,11 @@ Choose 1-3 [1]: 1
 
 ## O que é?
 
- Controle de acesso é utilizado para controlar ambientes, pessoas e informação, somente dando permissão de acesso, a quem for autorizado. Os arquivos deste repositório em conjunto com o Hardware descrito no documento `Controle de Acesso Utilizando Raspberry PI e Tecnologias de Baixo Custo`, foram publicados na Biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), estes documentos criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
+ Controle de acesso é utilizado para controlar ambiente, pessoas e informações, somente permitindo o acesso, a quem for autorizado. Os arquivos deste repositório em conjunto com o Hardware descrito no documento `Controle de Acesso Utilizando Raspberry PI e Tecnologias de Baixo Custo`, foram publicados na Biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), estes documentos criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
+ 
  Este projeto além de focar em Segurança Fisíca com Baixo Custo, mostra o quanto estamos sucetíveis a falta da segurança, quando utilizamos equipamentos tecnicamente ultrapassados, mas que continuam em alta demanda no mercado. Sem sabermos disto, temos a falsa sensação de estarmos seguros.
- Por fim, este equipamento adiciona uma senha, gera logs, cria um ambiente de gerenciamento fortificando a Tecnologia em questão `NFC` e `RFID`, um modelo simplificado de `2FA` (Duplo Fator de Autenticação). Vale ressaltar que por mais que se invista em técnologia e treinamento, sempre haverá um elo fraco, ocasionando a vulnerabilidade.
+ 
+ Por fim, este equipamento adiciona uma senha, gera logs, cria um ambiente de gerenciamento fortificando a Tecnologia em questão `NFC` e `RFID`, segue um modelo simplificado de `2FA` (Duplo Fator de Autenticação). Vale ressaltar que por mais que se invista em técnologia e treinamento, sempre haverá um elo fraco, ocasionando a vulnerabilidade.
 
 ### SCHEMATIC
 ![controle de acesso2](https://user-images.githubusercontent.com/47393713/59801878-de263c00-92be-11e9-9aa7-92f20c7daa7a.png)
