@@ -27,21 +27,21 @@ Select an editor.  To change later, run 'select-editor'.
 
 Choose 1-3 [1]: 1
 ```
+### Adicione ao final, para iniciar no Reboot
+`@reboot     ~/NFC_RPI/inicio.sh`
 
 ### Base de Dados
+* Lembrando que o MySql precisa estar em modo de execuação
 ```
  - 1 : Verifique se sua máquina contêm MySQL
  - 2 : Faça o login, e instale o arquivo .sql que está na pasta INSTALL
 ```
-### Adicione ao final, para iniciar no Reboot
-`@reboot     ~/NFC_RPI/index.sh`
-* Lembrando que o arquivo precisa estar em modo de execuação
+
 ## O que é?
 
-Controle de acesso é utilizado para controlar ambientes, pessoas e informação. Os arquivos neste repositório, junto com o Hardware descrito no documento, podem ser encontrados na biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), estes documentos criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
-
-Este trabalho além de focar em segurança de baixo custo, mostra o quanto estamos sucetiveis a falta da segurança utilizando equipamentos, tecnicamente ultrapassados, mas que continuam em alta. Nos dando a falsa sensação de estarmos seguros.
-Ele adiciona uma camada a mais de segurança, na Tecnologia `NFC` e `RFID`, sendo necessário o uso de uma senha como segundo fator de segurança `2FA`.
+ Controle de acesso é utilizado para controlar ambientes, pessoas e informação, somente dando permissão de acesso, a quem for autorizado. Os arquivos deste repositório em conjunto com o Hardware descrito no documento `Controle de Acesso Utilizando Raspberry PI e Tecnologias de Baixo Custo`, foram publicados na Biblioteca da [Fatec São Caetano do Sul](https://www.fatecsaocaetano.edu.br/), estes documentos criam um TCC(`Trabalho de Conclusão de Curso`), em Segurança da Informação.
+ Este projeto além de focar em Segurança Fisíca com Baixo Custo, mostra o quanto estamos sucetíveis a falta da segurança, quando utilizamos equipamentos tecnicamente ultrapassados, mas que continuam em alta demanda no mercado. Sem sabermos disto, temos a falsa sensação de estarmos seguros.
+ Por fim, este equipamento adiciona uma senha, gera logs, cria um ambiente de gerenciamento fortificando a Tecnologia em questão `NFC` e `RFID`, um modelo simplificado de `2FA` (Duplo Fator de Autenticação). Vale ressaltar que por mais que se invista em técnologia e treinamento, sempre haverá um elo fraco, ocasionando a vulnerabilidade.
 
 ### SCHEMATIC
 ![controle de acesso2](https://user-images.githubusercontent.com/47393713/59801878-de263c00-92be-11e9-9aa7-92f20c7daa7a.png)
