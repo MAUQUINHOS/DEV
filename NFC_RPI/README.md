@@ -4,10 +4,10 @@
 UTILIZANDO RASPBERRY PI TECNOLOGIAS DE BAIXO CUSTO
 ## Como usar:
 ```
- - 1 : Baixe o conteúdo, do repositório [NFC_RPI]
- - 2 : Salve-o em uma pasta, NFC_RPI
- - 3 : Dê permissão de execução ao conteúdo do Repositório
- - 4 : Instale o arquivo .sql da pasta INSTALL, para ter a obter base de dados
+ - 1 : Baixe o conteúdo, do repositório [DEV]
+ - 2 : Acesse a pasta, NFC_RPI [~# cd NFC_RPI]
+ - 3 : Dê permissão de execução ao conteúdo da pasta [~#chmod -R 777 *]
+ - 4 : Instale o arquivo .sql da pasta INSTALL, para a obter base de dados
 ```
 ### Exemplo
 ```
