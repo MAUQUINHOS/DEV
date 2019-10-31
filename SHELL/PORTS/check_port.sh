@@ -39,7 +39,7 @@ else
             echo -e "\tPort $2 in $1 CLOSED"
             ;;
           *)
-            echo -e "\t Contais an ERROR!"
+            echo -e "\t Contains an ERROR!"
             ;;
         esac
 fi
