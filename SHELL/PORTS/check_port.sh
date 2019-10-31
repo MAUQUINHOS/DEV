@@ -10,6 +10,10 @@
 #
 # For check Port in Remote Address use: ./check_port.sh IP_REMOTE PORT
 # ex: ./check_port.sh 8.8.8.8 53
+# output
+# Check PORT ONLINE
+#
+#	Port 53 in 8.8.8.8 OPEN
 #
 # Check permissions before use.
 #
